@@ -239,6 +239,12 @@ class MiCompiladorParser ( Parser ):
             if hasattr( listener, "exitPrograma" ):
                 listener.exitPrograma(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitPrograma" ):
+                return visitor.visitPrograma(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -293,6 +299,12 @@ class MiCompiladorParser ( Parser ):
             if hasattr( listener, "exitBloque" ):
                 listener.exitBloque(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitBloque" ):
+                return visitor.visitBloque(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -346,6 +358,12 @@ class MiCompiladorParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitDeclaraciones" ):
                 listener.exitDeclaraciones(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitDeclaraciones" ):
+                return visitor.visitDeclaraciones(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -403,6 +421,12 @@ class MiCompiladorParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitDeclaracion" ):
                 listener.exitDeclaracion(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitDeclaracion" ):
+                return visitor.visitDeclaracion(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -465,6 +489,12 @@ class MiCompiladorParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitVar_declaracion" ):
                 listener.exitVar_declaracion(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitVar_declaracion" ):
+                return visitor.visitVar_declaracion(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -534,6 +564,12 @@ class MiCompiladorParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitFuncion_declaracion" ):
                 listener.exitFuncion_declaracion(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitFuncion_declaracion" ):
+                return visitor.visitFuncion_declaracion(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -634,6 +670,12 @@ class MiCompiladorParser ( Parser ):
             if hasattr( listener, "exitLista_parametros" ):
                 listener.exitLista_parametros(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitLista_parametros" ):
+                return visitor.visitLista_parametros(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -692,6 +734,12 @@ class MiCompiladorParser ( Parser ):
             if hasattr( listener, "exitParametro" ):
                 listener.exitParametro(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitParametro" ):
+                return visitor.visitParametro(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -734,6 +782,12 @@ class MiCompiladorParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitTipo" ):
                 listener.exitTipo(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitTipo" ):
+                return visitor.visitTipo(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -782,6 +836,12 @@ class MiCompiladorParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitCompound_statement" ):
                 listener.exitCompound_statement(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitCompound_statement" ):
+                return visitor.visitCompound_statement(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -838,6 +898,12 @@ class MiCompiladorParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitLista_sentencias" ):
                 listener.exitLista_sentencias(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitLista_sentencias" ):
+                return visitor.visitLista_sentencias(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -927,6 +993,12 @@ class MiCompiladorParser ( Parser ):
             if hasattr( listener, "exitSentencia" ):
                 listener.exitSentencia(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitSentencia" ):
+                return visitor.visitSentencia(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1015,6 +1087,12 @@ class MiCompiladorParser ( Parser ):
             if hasattr( listener, "exitAsignacion" ):
                 listener.exitAsignacion(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitAsignacion" ):
+                return visitor.visitAsignacion(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1067,6 +1145,12 @@ class MiCompiladorParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitSentencia_if" ):
                 listener.exitSentencia_if(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitSentencia_if" ):
+                return visitor.visitSentencia_if(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1130,6 +1214,12 @@ class MiCompiladorParser ( Parser ):
             if hasattr( listener, "exitSentencia_while" ):
                 listener.exitSentencia_while(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitSentencia_while" ):
+                return visitor.visitSentencia_while(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1180,6 +1270,12 @@ class MiCompiladorParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitLlamada_procedimiento" ):
                 listener.exitLlamada_procedimiento(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitLlamada_procedimiento" ):
+                return visitor.visitLlamada_procedimiento(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1239,6 +1335,12 @@ class MiCompiladorParser ( Parser ):
             if hasattr( listener, "exitLista_argumentos" ):
                 listener.exitLista_argumentos(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitLista_argumentos" ):
+                return visitor.visitLista_argumentos(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1294,6 +1396,12 @@ class MiCompiladorParser ( Parser ):
             if hasattr( listener, "exitSentencia_return" ):
                 listener.exitSentencia_return(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitSentencia_return" ):
+                return visitor.visitSentencia_return(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1347,6 +1455,12 @@ class MiCompiladorParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitSentencia_io" ):
                 listener.exitSentencia_io(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitSentencia_io" ):
+                return visitor.visitSentencia_io(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1428,6 +1542,12 @@ class MiCompiladorParser ( Parser ):
             if hasattr( listener, "exitExpresion" ):
                 listener.exitExpresion(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitExpresion" ):
+                return visitor.visitExpresion(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1490,6 +1610,12 @@ class MiCompiladorParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitExpresion_simple" ):
                 listener.exitExpresion_simple(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitExpresion_simple" ):
+                return visitor.visitExpresion_simple(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1555,6 +1681,12 @@ class MiCompiladorParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitTermino" ):
                 listener.exitTermino(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitTermino" ):
+                return visitor.visitTermino(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1627,6 +1759,12 @@ class MiCompiladorParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitFactor" ):
                 listener.exitFactor(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitFactor" ):
+                return visitor.visitFactor(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1708,6 +1846,12 @@ class MiCompiladorParser ( Parser ):
             if hasattr( listener, "exitBooleano" ):
                 listener.exitBooleano(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitBooleano" ):
+                return visitor.visitBooleano(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1752,6 +1896,12 @@ class MiCompiladorParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitOperador_relacional" ):
                 listener.exitOperador_relacional(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitOperador_relacional" ):
+                return visitor.visitOperador_relacional(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1798,6 +1948,12 @@ class MiCompiladorParser ( Parser ):
             if hasattr( listener, "exitOperador_aditivo" ):
                 listener.exitOperador_aditivo(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitOperador_aditivo" ):
+                return visitor.visitOperador_aditivo(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1842,6 +1998,12 @@ class MiCompiladorParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitOperador_multiplicativo" ):
                 listener.exitOperador_multiplicativo(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitOperador_multiplicativo" ):
+                return visitor.visitOperador_multiplicativo(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
