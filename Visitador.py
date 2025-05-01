@@ -144,3 +144,78 @@ class EvalVisitor(MiCompiladorVisitor):
 
         if isinstance(result, dict) and "return" in result:
             return result["return"]
+        
+    def visitExpresion(self, ctx):
+        print("Visit: expresion")
+        if ctx.operador_relacional():
+            left = self.visit(ctx.expresion_simple(0))
+            right = self.visit(ctx.expresion_simple(1))
+            op = ctx.operador_relacional().getText()
+            result = self.apply_op(op, left, right)
+            print(f"Evaluated: {left} {op} {right} = {result}")
+            return result
+        elif ctx.expresion_simple():
+            return self.visit(ctx.expresion_simple(0))
+        else:
+            return self.visitChildren(ctx)
+
+    def visitExpresion_simple(self, ctx):
+        print("Visit: expresion_simple")
+        result = self.visit(ctx.termino(0))
+        for i in range(1, len(ctx.termino())):
+            op = ctx.operador_aditivo(i - 1).getText()
+            right = self.visit(ctx.termino(i))
+            result = self.apply_op(op, result, right)
+            print(f"Evaluated (aditivo): {result}")
+        return result
+
+    def visitTermino(self, ctx):
+        print("Visit: termino")
+        result = self.visit(ctx.factor(0))
+        for i in range(1, len(ctx.factor())):
+            op = ctx.operador_multiplicativo(i - 1).getText()
+            right = self.visit(ctx.factor(i))
+            result = self.apply_op(op, result, right)
+            print(f"Evaluated (multiplicativo): {result}")
+        return result
+
+    def visitFactor(self, ctx):
+        print("Visit: factor")
+        text = ctx.getText()
+        if text.startswith('"') and text.endswith('"'):
+            value = text.strip('"')
+            print(f"Value: {value}")
+            return value
+        if ctx.INT():
+            value = int(ctx.INT().getText())
+            print(f"Value: {value}")
+            return value
+        if ctx.FLOAT():
+            value = float(ctx.FLOAT().getText())
+            print(f"Value: {value}")
+            return value
+        if ctx.ID():
+            var_name = ctx.ID().getText()
+            if var_name not in self.memory:
+                print(f"ERROR: Variable {var_name} no declarada")
+                return None
+            value = self.memory.get(var_name, None)
+            print(f"Variable value: {var_name} = {value}")
+            return value
+        if ctx.expresion():
+            return self.visit(ctx.expresion())
+        if ctx.llamada_procedimiento():
+            return self.visit(ctx.llamada_procedimiento())
+        return self.visitChildren(ctx)
+
+    def apply_op(self, op, left, right):
+        if op == '+': return left + right
+        if op == '-': return left - right
+        if op == '*': return left * right
+        if op == '/': return left / right
+        if op == '=': return left == right
+        if op == '<>': return left != right
+        if op == '<': return left < right
+        if op == '<=': return left <= right
+        if op == '>': return left > right
+        if op == '>=': return left >= right
