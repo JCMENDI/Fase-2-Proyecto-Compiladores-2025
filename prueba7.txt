@@ -1,0 +1,6 @@
+PROGRAM test;
+VAR x : INTEGER;
+BEGIN
+    x := 5
+    PRINTLN(x);
+END

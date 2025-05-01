@@ -1,0 +1,14 @@
+PROGRAM test;
+VAR edad : INTEGER;
+BEGIN
+    PRINT("Ingrese su edad: ");
+    READLN(edad);
+    IF edad >= 18 THEN
+    BEGIN
+        PRINTLN("Mayor de edad");
+    END
+    ELSE
+    BEGIN
+        PRINTLN("Menor de edad");
+    END
+END

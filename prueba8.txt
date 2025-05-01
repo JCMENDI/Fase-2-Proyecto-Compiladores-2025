@@ -1,0 +1,5 @@
+PROGRAM test;
+BEGIN
+    x := 10;
+    PRINTLN(x);
+END

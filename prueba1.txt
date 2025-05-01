@@ -1,0 +1,4 @@
+PROGRAM test;
+BEGIN
+    PRINTLN("Hola Mundo");
+END

@@ -1,0 +1,12 @@
+PROGRAM test;
+VAR resultado : INTEGER;
+
+FUNCTION sumar(a : INTEGER; b : INTEGER): INTEGER;
+BEGIN
+    RETURN a + b;
+END;
+
+BEGIN
+    resultado := sumar(3, 4);
+    PRINTLN(resultado);
+END
