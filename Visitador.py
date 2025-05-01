@@ -86,3 +86,61 @@ class EvalVisitor(MiCompiladorVisitor):
             val = input(f"READLN {var_name}: ")
             self.memory[var_name] = int(val) if val.isdigit() else val
             print(f"READ value for {var_name}: {self.memory[var_name]}")
+
+
+
+    def visitSentencia_if(self, ctx):
+        print("Visit: sentencia_if")
+        condition = self.visit(ctx.expresion())
+
+        if condition:
+            print("Condition is True")
+            self.visit(ctx.sentencia(0))
+        elif ctx.sentencia(1):
+            print("Condition is False, executing ELSE")
+            self.visit(ctx.sentencia(1))
+
+
+    def visitSentencia_while(self, ctx):
+        print("Visit: sentencia_while")
+        while self.visit(ctx.expresion()):
+            print("WHILE condition True, executing loop body")
+            result = self.visit(ctx.sentencia())
+            if isinstance(result, dict) and result.get("return") is not None:
+                return result
+
+    def visitSentencia_return(self, ctx):
+        print("Visit: sentencia_return")
+        value = self.visit(ctx.expresion())
+        if isinstance(value, dict) and "return" in value:
+            value = value["return"]
+        print(f"RETURN value: {value}")
+        return {"return": value}
+
+    def visitLlamada_procedimiento(self, ctx):
+        print("Visit: llamada_procedimiento")
+        func_name = ctx.ID().getText()
+        if func_name not in self.functions:
+            print(f"ERROR: Function {func_name} not defined")
+            return
+
+        func_ctx = self.functions[func_name]
+        old_memory = self.memory.copy()
+
+        param_list = func_ctx.lista_parametros()
+        arg_list = ctx.lista_argumentos()
+
+        if param_list and arg_list:
+            params = param_list.parametro()
+            args = arg_list.expresion()
+            for p, a in zip(params, args):
+                param_name = p.ID().getText()
+                arg_value = self.visit(a)
+                self.memory[param_name] = arg_value
+                print(f"Function param {param_name} := {arg_value}")
+
+        result = self.visit(func_ctx.bloque())
+        self.memory = old_memory
+
+        if isinstance(result, dict) and "return" in result:
+            return result["return"]
